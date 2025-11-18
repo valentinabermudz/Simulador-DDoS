@@ -5,9 +5,7 @@ import Statistics from './Statistics';
 import ProtectionPanel from './ProtectionPanel';
 import ControlPanel from './ControlPanel';
 import RequestsList from './RequestsList';
-import SystemLogs from './SystemLogs';
 import EducationalInfo from './EducationalInfo';
-import ComparisonStats from './ComparisonStats';
 
 const DDoSSimulator = () => {
   const [activeTab, setActiveTab] = useState('vulnerable');
@@ -94,17 +92,14 @@ const DDoSSimulator = () => {
           onReset={resetSimulation}
         />
 
-        {/* Requests y Logs */}
+        {/* Requests e Información Educativa */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           <RequestsList requests={requests} />
-          <SystemLogs logs={logs} />
-        </div>
-
-        {/* Información Educativa */}
-        <EducationalInfo 
+          <EducationalInfo 
           activeTab={activeTab} 
           currentProtection={currentProtection} 
         />
+        </div>        
       </div>
     </div>
   );
