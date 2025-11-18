@@ -3,12 +3,12 @@ import { Clock } from 'lucide-react';
 
 const SystemLogs = ({ logs }) => {
   return (
-    <div className="bg-slate-800 rounded-xl p-6 border border-slate-700">
-      <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+    <div className="bg-slate-800 rounded-xl p-6 border border-slate-700 h-96 flex flex-col">
+      <h3 className="text-lg font-semibold mb-4 flex items-center gap-2 flex-none">
         <Clock className="w-5 h-5 text-cyan-400" />
         Logs del Sistema
       </h3>
-      <div className="space-y-2 max-h-96 overflow-y-auto font-mono text-xs">
+      <div className="space-y-2 overflow-y-auto flex-1 font-mono text-xs">
         {logs.map(log => (
           <div
             key={log.id}

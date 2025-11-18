@@ -29,7 +29,9 @@ const useDDoSSimulation = (activeTab) => {
   const simulateAttack = useCallback(() => {
     if (!isAttacking) return;
 
-    const attackerRequests = Array.from({ length: 15 }, () => generateRequest(true));
+    // Ajustar la intensidad del ataque según el nivel
+    const attackIntensity = activeTab === 'vulnerable' ? 8 : 15;
+    const attackerRequests = Array.from({ length: attackIntensity }, () => generateRequest(true));
     const legitRequests = Math.random() > 0.7 ? [generateRequest(false)] : [];
 
     setRequests(prevRequests => {
@@ -46,26 +48,49 @@ const useDDoSSimulation = (activeTab) => {
       setAttackers(prev => prev + newAttackers);
       setLegitimateUsers(prev => prev + newLegit);
 
+      // Calcular daño según el nivel de protección
       if (activeTab === 'vulnerable') {
+        // Sin protección: cae en ~15 segundos
         setServerHealth(prev => {
-          const newHealth = Math.max(0, prev - newAttackers * 1.5);
+          const damage = newAttackers * 0.9; // Daño moderado
+          const newHealth = Math.max(0, prev - damage);
           return newHealth;
         });
-        if (newAttackers > 10) {
+        if (newAttackers > 5) {
           addLog(`⚠️ Servidor sobrecargado: ${newAttackers} requests maliciosos procesados`, 'error');
         }
-      } else {
+      } else if (activeTab === 'rateLimit') {
+        // Rate Limiting: cae en ~60 segundos
         setServerHealth(prev => {
-          const newHealth = Math.max(0, prev - newAttackers * 0.2);
+          const damage = newAttackers * 0.55; // Daño medio-bajo
+          const newHealth = Math.max(0, prev - damage);
           return newHealth;
         });
         if (newBlocked > 0) {
           addLog(`🛡️ Bloqueados ${newBlocked} requests maliciosos`, 'success');
         }
-      }
-
-      if (activeTab !== 'vulnerable') {
-        setServerHealth(prev => prev < 100 ? Math.min(100, prev + 0.5) : prev);
+      } else if (activeTab === 'captcha') {
+        // CAPTCHA: cae en ~120-180 segundos
+        setServerHealth(prev => {
+          const damage = newAttackers * 0.35; // Daño bajo
+          const recovery = 0.15; // Recuperación muy lenta
+          const newHealth = Math.max(0, Math.min(100, prev - damage + recovery));
+          return newHealth;
+        });
+        if (newBlocked > 0) {
+          addLog(`🛡️ Bloqueados ${newBlocked} requests maliciosos`, 'success');
+        }
+      } else if (activeTab === 'waf') {
+        // WAF: cae en ~300+ segundos (5+ minutos)
+        setServerHealth(prev => {
+          const damage = newAttackers * 0.25; // Daño muy bajo
+          const recovery = 0.35; // Recuperación moderada
+          const newHealth = Math.max(0, Math.min(100, prev - damage + recovery));
+          return newHealth;
+        });
+        if (newBlocked > 0) {
+          addLog(`🛡️ Bloqueados ${newBlocked} requests maliciosos`, 'success');
+        }
       }
 
       return [...allRequests, ...prevRequests].slice(0, 50);
@@ -106,7 +131,7 @@ const useDDoSSimulation = (activeTab) => {
         clearInterval(attackIntervalRef.current);
       }
     };
-  }, [isAttacking, activeTab, requests, serverHealth]);
+  }, [isAttacking, simulateAttack]);
 
   // Detectar cuando el servidor cae
   useEffect(() => {
