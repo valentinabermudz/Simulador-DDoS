@@ -62,7 +62,7 @@ const useDDoSSimulation = (activeTab) => {
       } else if (activeTab === 'rateLimit') {
         // Rate Limiting: cae en ~60 segundos
         setServerHealth(prev => {
-          const damage = newAttackers * 0.55; // Daño medio-bajo
+          const damage = newAttackers * 0.45; // Daño medio-bajo
           const newHealth = Math.max(0, prev - damage);
           return newHealth;
         });
