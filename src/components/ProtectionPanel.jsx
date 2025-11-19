@@ -1,4 +1,3 @@
-import React from 'react';
 import { Shield, CheckCircle, XCircle } from 'lucide-react';
 
 const ProtectionPanel = ({ currentProtection }) => {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { AlertTriangle } from 'lucide-react';
 
 const EducationalInfo = ({ activeTab, currentProtection }) => {
@@ -28,8 +27,8 @@ const EducationalInfo = ({ activeTab, currentProtection }) => {
           <>
             <p><strong>Protección:</strong> Verificación humana mediante CAPTCHA.</p>
             <p><strong>Cómo funciona:</strong> Requests sospechosos deben demostrar que vienen de un usuario real.</p>
-            <p><strong>Ventaja:</strong> Detiene bots automatizados.</p>
-            <p><strong>Contras:</strong> Puede molestar a usuarios legítimos.</p>
+            <p><strong>Ventaja:</strong> Detiene muchos bots automatizados.</p>
+            <p><strong>Contras:</strong> Ya existen bots que logran pasar el captcha.</p>
           </>
         );
 
@@ -56,14 +55,15 @@ const EducationalInfo = ({ activeTab, currentProtection }) => {
       </h3>
 
       {/* Contenido principal */}
-      <div className="text-sm text-slate-300 space-y-2 flex-1 overflow-y-auto">
+      <div className="text-md text-slate-300 space-y-2 flex-1 overflow-y-auto">
         {getContent()}
 
         {/* Nota adicional */}
-        <p className="text-sm text-blue-200 mt-4">
-          <strong>💡 Nota:</strong> Los tiempos mostrados corresponden a un entorno educativo.
-          En un entorno real, un WAF bien configurado puede resistir ataques DDoS durante horas o días,
-          y combinado con CDN y balanceo de carga, el servicio suele mantenerse disponible incluso ante ataques prolongados.
+        <p className="text-md text-blue-200 mt-4">
+          <strong>💡 Nota:</strong> El objetivo de esta simulación es cuantificar la diferencia 
+          en el tiempo de supervivencia de un sistema con y sin protecciones activas. La métrica de 
+          tiempo que se obtiene es demostrativa, no real, y representa el margen crucial disponible para
+          detectar y mitigar el ataque de manera proactiva antes de que se produzca la caída del servicio
         </p>
       </div>
     </div>

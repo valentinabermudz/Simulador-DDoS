@@ -47,7 +47,7 @@ const DDoSSimulator = () => {
           <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
             Simulador de Ataques DDoS
           </h1>
-          <p className="text-slate-400">Demostración Educativa de Vulnerabilidades y Soluciones</p>
+          <p className="text-slate-400">Seguridad en el Desarrollo de Software</p>
         </div>
 
         {/* Tabs de Protección */}

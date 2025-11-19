@@ -4,12 +4,12 @@ Proyecto educativo para demostrar vulnerabilidades DDoS y sus soluciones de segu
 
 ## 🎯 Características
 
-- ✅ Simulación visual de ataques DDoS en tiempo real
-- ✅ 4 niveles de protección progresivos
-- ✅ Monitoreo de salud del servidor
-- ✅ Estadísticas detalladas de requests
-- ✅ Sistema de logs en tiempo real
-- ✅ Explicaciones educativas de cada vulnerabilidad
+- Simulación visual de ataques DDoS en tiempo real
+- 3 niveles de protección progresivos
+- Monitoreo de salud del servidor
+- Estadísticas detalladas de requests
+- Sistema de logs en tiempo real
+- Explicaciones educativas de cada vulnerabilidad
 
 ## 🚀 Tecnologías
 

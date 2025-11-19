@@ -50,7 +50,6 @@ const useDDoSSimulation = (activeTab) => {
 
       // Calcular daño según el nivel de protección
       if (activeTab === 'vulnerable') {
-        // Sin protección: cae en ~15 segundos
         setServerHealth(prev => {
           const damage = newAttackers * 0.9; // Daño moderado
           const newHealth = Math.max(0, prev - damage);
@@ -60,7 +59,6 @@ const useDDoSSimulation = (activeTab) => {
           addLog(`⚠️ Servidor sobrecargado: ${newAttackers} requests maliciosos procesados`, 'error');
         }
       } else if (activeTab === 'rateLimit') {
-        // Rate Limiting: cae en ~60 segundos
         setServerHealth(prev => {
           const damage = newAttackers * 0.45; // Daño medio-bajo
           const newHealth = Math.max(0, prev - damage);
@@ -70,7 +68,6 @@ const useDDoSSimulation = (activeTab) => {
           addLog(`🛡️ Bloqueados ${newBlocked} requests maliciosos`, 'success');
         }
       } else if (activeTab === 'captcha') {
-        // CAPTCHA: cae en ~120-180 segundos
         setServerHealth(prev => {
           const damage = newAttackers * 0.35; // Daño bajo
           const recovery = 0.15; // Recuperación muy lenta
@@ -81,7 +78,6 @@ const useDDoSSimulation = (activeTab) => {
           addLog(`🛡️ Bloqueados ${newBlocked} requests maliciosos`, 'success');
         }
       } else if (activeTab === 'waf') {
-        // WAF: cae en ~300+ segundos (5+ minutos)
         setServerHealth(prev => {
           const damage = newAttackers * 0.25; // Daño muy bajo
           const recovery = 0.35; // Recuperación moderada
