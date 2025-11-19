@@ -1,7 +1,7 @@
 {
   "name": "ddos-simulator",
   "version": "1.0.0",
-  "description": "Simulador educativo de ataques DDoS y sus soluciones",
+  "description": "Simulador de ataques DDoS y sus soluciones",
   "author": "Valentina",
   "private": true,
   "dependencies": {

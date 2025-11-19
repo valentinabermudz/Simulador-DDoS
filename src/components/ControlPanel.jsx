@@ -1,4 +1,3 @@
-import React from 'react';
 import { ShieldAlert } from 'lucide-react';
 
 const ControlPanel = ({ isAttacking, serverHealth, onStartAttack, onStopAttack, onReset }) => {
